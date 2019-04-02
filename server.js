@@ -12,7 +12,7 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-    res.json('hello');
+    res.json('hello there');
 });
 
 app.listen(process.env.PORT || 8080, () => {
