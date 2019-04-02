@@ -1,9 +1,11 @@
 'use strict';
-
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const mongoose = require
+const mongoose = require('mongoose');
 const app = express();
+const { PORT, DATABASE_URL } = require('./config');
+
 
 app.use(express.json());
 app.use(
@@ -20,7 +22,7 @@ let server;
 
 function runServer() {
     return new Promise((resolve, reject) => {
-        mongoose.connect(DATABASE_URL, { useMongoClient: true }, err => {
+        mongoose.connect(DATABASE_URL, { useNewUrlParser: true }, err => {
             if (err) {
                 return reject(err);
             }
