@@ -5,6 +5,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 const { PORT, DATABASE_URL } = require('./config');
+const cheerio = require('./scraper');
+
 
 
 app.use(express.json());
@@ -15,7 +17,11 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-    res.json('hello there');
+    let { scraper, dynamicScraper } = cheerio;
+
+    dynamicScraper().then((output) => {
+        res.json(output);
+    });
 });
 
 let server;
